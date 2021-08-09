@@ -1,0 +1,21 @@
+require: 
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - node_modules/**/*
+    - db/**
+    - db/migrate/**
+    - bin/**
+    - vendor/**/*
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+
+Style/Documentation:
+  Enabled: false
