@@ -1,1 +1,12 @@
-<h1>Hello Star Wars</h1>
+<h1>Les personnages de Star Wars classés par films</h1>
+
+<% @data.each do |film| %>
+  <div>
+    <h4>Titre du film : <%= film['film_title'] %> </h4>
+    <ul>
+      <% film['filtered_characters'].each do |character| %>
+        <li>Nom du personnage : <%= character['name'] %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
