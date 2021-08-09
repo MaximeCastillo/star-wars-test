@@ -1,17 +1,28 @@
-<h1>Les personnages de Star Wars classés par films</h1>
+<nav class="navbar navbar-light bg-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0">
+      <h2 class="main_title">Les personnages de Star Wars classés par épisodes</h2>
+    </span>
+  </div>
+</nav>
 
+<div class="container">
 <% @data.each do |film| %>
-  <div>
-    <h4>Titre du film : <%= film['film_title'] %> </h4>
-    <ul>
-      <% film['filtered_characters'].each do |character| %>
-        <div>
-          <li> Nom du personnage : <%= character['name'] %> </li>
-          <li> Masse du personnage : <%= character['mass'] %> </li>
-          <li> Planète d'origine du personnage : <%= character['homeworld_name'] %> </li>
-          </br>
+  <div class="row mt-5">
+    <h4 class="film_title"><%= film['film_title'] %></h4>
+
+    <% film['filtered_characters'].each do |character| %>
+      <div class="card col-lg-3">
+        <h5 class="card-header"><%= character['name'] %></h5>
+        <div class="card-body">
+          <p class="card-text">
+            Poids : <%= character['mass'] %>kg
+            </br>
+            Planète d'origine : <%= character['homeworld_name'] %>
+          </p>
         </div>
-      <% end %>
-    </ul>
+      </div>
+    <% end %>
   </div>
 <% end %>
+</div>

@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: 'Starjedi';
+  src: url('Starjedi.ttf');
+}
+
+.main_title {
+  color: #FFE919;
+  font-family: 'Starjedi';
+}
+
+.film_title {
+  font-family: 'Starjedi';
+}
