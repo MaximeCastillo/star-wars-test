@@ -5,7 +5,12 @@
     <h4>Titre du film : <%= film['film_title'] %> </h4>
     <ul>
       <% film['filtered_characters'].each do |character| %>
-        <li>Nom du personnage : <%= character['name'] %> </li>
+        <div>
+          <li> Nom du personnage : <%= character['name'] %> </li>
+          <li> Masse du personnage : <%= character['mass'] %> </li>
+          <li> Planète d'origine du personnage : <%= character['homeworld_name'] %> </li>
+          </br>
+        </div>
       <% end %>
     </ul>
   </div>
