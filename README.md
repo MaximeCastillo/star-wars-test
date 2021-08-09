@@ -1,24 +1,8 @@
-# README
+# Projet Rails sur l'API swapi.dev
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+La page contient une liste de tous les personnages de Star Wars dont la masse est supérieure à 75, groupés par film.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Pour chaque personnage, on trouvera :
+* son nom
+* sa masse
+* le nom de sa planète d'origine
