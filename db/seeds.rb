@@ -1,7 +1,19 @@
+#swgem is limited to first page of 10 results -> need another solution to get all characters
+include RequestHelper
 puts "Seeding the database..."
 
-api_planets = SWGEM::Planets.new
-planets = api_planets.all
+#Seeding planets
+planets_count = get("https://swapi.dev/api/planets")['count']
+pages_count = (planets_count.to_f / 10).ceil
+
+planets_page_url = 'https://swapi.dev/api/planets/?page='
+planets = []
+
+pages_count.times do |page|
+  page_planets = get(planets_page_url + (page + 1).to_s)['results']
+  planets.concat(page_planets)
+end
+
 planets.each do |planet|
   Planet.create({
     name: planet['name'],
@@ -10,11 +22,7 @@ planets.each do |planet|
 end
 puts "- planets"
 
-#api_people = SWGEM::People.new
-#swgem is limited to first page of 10 characters -> need another solution to get all characters
-
-include RequestHelper
-
+#Seeding characters and their homeworld
 characters_count = get("https://swapi.dev/api/people")['count']
 pages_count = (characters_count.to_f / 10).ceil
 
@@ -38,6 +46,7 @@ characters.each do |character|
 end
 puts "- characters"
 
+#Seeding movies and their characters with swgem (only 6 movies)
 api_films = SWGEM::Films.new
 movies = api_films.all
 movies.each do |movie|
