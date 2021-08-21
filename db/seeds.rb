@@ -1,22 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "Seeding the database..."
 
 api_planets = SWGEM::Planets.new
 planets = api_planets.all
 planets.each do |planet|
   Planet.create({
-    name: planet['name']
+    name: planet['name'],
+    swapi_id: planet['url'].gsub(/\D/, "").to_i
   })
 end
-puts "DB : planets created"
+puts "- planets"
 
 #api_people = SWGEM::People.new
-#swgem is limited to first(10) characters, need another solution to get all characters
+#swgem is limited to first page of 10 characters -> need another solution to get all characters
 
 include RequestHelper
 
@@ -32,26 +27,31 @@ pages_count.times do |page|
 end
 
 characters.each do |character|
-  Character.create({
+  my_character = Character.new({
     name: character['name'],
     mass: character['mass'],
-    planet_id: character['homeworld'].gsub(/\D/, "").to_i,
     swapi_id: character['url'].gsub(/\D/, "").to_i
   })
+  planet_id = character['homeworld'].gsub(/\D/, "").to_i
+  my_character.planet = Planet.find_by_swapi_id(planet_id)
+  my_character.save
 end
-puts "DB : characters created"
+puts "- characters"
 
 api_films = SWGEM::Films.new
 movies = api_films.all
 movies.each do |movie|
   my_movie = Movie.new({
     title: movie['title'],
-    episode_id: movie['episode_id']
+    episode_id: movie['episode_id'],
+    swapi_id: movie['url'].gsub(/\D/, "").to_i
   })
   movie['characters'].each do |character_url|
     character_id = character_url.gsub(/\D/, "").to_i
-    my_movie.characters << Character.where(swapi_id: character_id)
+    my_movie.characters << Character.find_by_swapi_id(character_id)
   end
   my_movie.save
 end
-puts "DB : movies created"
+puts "- movies"
+
+puts "Seeding is done."
