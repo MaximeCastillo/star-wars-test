@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_004128) do
+ActiveRecord::Schema.define(version: 2021_08_21_112924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_004128) do
     t.bigint "planet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "swapi_id"
     t.index ["planet_id"], name: "index_characters_on_planet_id"
   end
 

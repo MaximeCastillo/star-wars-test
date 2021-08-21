@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   def index
     @data = []
 
-    films = get("http://5.196.14.171:8000/api/films")['results']
+    films = get("https://swapi.dev/api/films")['results']
 
     films.each do |film|
       filtered_characters = []
