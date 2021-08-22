@@ -10,7 +10,12 @@
             <p class="card-text">
               Poids : <%= character.mass %>kg
               </br>
-              Planète d'origine : <%= character.planet.name %>
+              Planète d'origine :
+                <% if (character.planet.name == "unknown") %>
+                  nom inconnu
+                <% else %>
+                  <%= character.planet.name %>
+                <% end %>
             </p>
           </div>
         </div>
