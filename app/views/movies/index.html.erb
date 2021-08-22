@@ -1,0 +1,20 @@
+<% @movies.each do |movie| %>
+  <div class="row mt-5">
+    <h4 class="movie_title"><%= movie.title %></h4>
+
+    <% movie.characters.each do |character| %>
+      <% if character.mass.to_f > 75 %>
+        <div class="card col-lg-3">
+          <h5 class="card-header"><%= character.name %></h5>
+          <div class="card-body">
+            <p class="card-text">
+              Poids : <%= character.mass %>kg
+              </br>
+              Planète d'origine : <%= character.planet.name %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
