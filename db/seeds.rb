@@ -1,4 +1,4 @@
-#swgem is limited to first page of 10 results -> need another solution to get all characters
+#swgem is limited to first page of 10 results -> need another solution to get all results
 include RequestHelper
 puts "Seeding the database..."
 
